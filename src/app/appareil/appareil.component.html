@@ -1,0 +1,21 @@
+<h3>Appareils Lisit</h3>
+<ul class="list-group">
+<!---->
+  <li class="list-group-item" *ngFor="let app of appareils">{{app.name}} - {{app.status}}</li>
+ <!---->
+  <li
+   [ngClass]="{
+    'list-group-item':true,
+    'list-group-item-danger':app.status==='Eteint',
+    'list-group-item-success':app.status==='Allumé'
+
+  }" 
+  *ngFor="let app of appareils">
+  <div
+  *ngIf="app.status==='Eteint'" style="width: 10px;
+  height: 10px;
+  background-color: red;"></div>
+  {{app.name}} - {{app.status}}</li>
+
+
+</ul>

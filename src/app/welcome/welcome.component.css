@@ -1,0 +1,16 @@
+.welcome {
+     color: #3f3f3f;
+     font-size: 2rem;
+     margin: 8rem;
+   
+     text-align: center;
+   
+     background-color: #a8a8a8;
+     border: 1px solid #303030;
+     border-radius: 20px;
+     transition: 0.4s;
+     cursor: pointer;
+}
+.welcome:hover{
+    scale: 1.05;
+}
