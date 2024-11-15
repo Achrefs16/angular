@@ -1,8 +1,7 @@
 <h3>Appareils Lisit</h3>
 <ul class="list-group">
-<!---->
-  <li class="list-group-item" *ngFor="let app of appareils">{{app.name}} - {{app.status}}</li>
- <!---->
+
+ 
   <li
    [ngClass]="{
     'list-group-item':true,
@@ -18,4 +17,11 @@
   {{app.name}} - {{app.status}}</li>
 
 
-</ul>
+
+</ ul>
+
+<button class="btn btn-primary mt-3 mx-4" (click)="onallumer()">Allumer tout</button>
+<button  class="btn btn-danger mt-3" (click)="oneteint()">Etiendre tout</button>
+<br>
+ <input type="text" [(ngModel)]="name" placeholder="Enter your name"  class="mt-4"/>
+<p>Hello, {{ name }}!</p>

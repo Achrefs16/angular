@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppareilsService } from "../appareils.service";
 
 @Component({
   selector: 'app-appareil',
@@ -6,11 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './appareil.component.css'
 })
 export class AppareilComponent {
-    appareils=[{name:"Refrigerateur",status:"Allumé"},
-      {name:"Tv",status:"Eteint"},
-      {name:"Micro Onde",status:"Allumé"},
-      {name:"Climatiseur",status:"Eteint"},
-    ]
+
+
+    appareils :any =[]
+
+    constructor(private app:AppareilsService){
+      this.appareils=this.app.appareils
+
+    }
     app1 = "Refrigerateur";
     app2 = "Tv";
     app3 = "Micro Onde";
@@ -19,5 +23,25 @@ export class AppareilComponent {
     app2_status = "Eteint";
     app3_status = "Allumé ";
     app4_status = "Eteint";
+ name: string = '';
+
+
+ onallumer(){
+  if (confirm("Are you sure")) {
+      for (let app of this.appareils) {
+    app.status='Allumé'
+    
+  }
+  }
+
+ }
+  oneteint(){
+  if (confirm("Are you sure")) {
+      for (let app of this.appareils) {
+    app.status='Eteint'
+    
+  }
+ }
+}
 
 }
