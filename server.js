@@ -3,12 +3,13 @@ const app = express()
 
 
 
-  const appareils=[{name:"Refrigerateur",status:"Allumé"},
+  const appareils=[
+      {name:"Refrigerateur",status:"Allumé"},
       {name:"Tv",status:"Eteint"},
       {name:"Micro Onde",status:"Allumé"},
       {name:"Climatiseur",status:"Eteint"},
     ]
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.get("/appareils",(req,res)=>{
     res.send(appareils)
 })

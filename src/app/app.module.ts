@@ -7,6 +7,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AppareilComponent } from './appareil/appareil.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './contact/contact.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ContactComponent } from './contact/contact.component';
     FormsModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient()
   ],
   bootstrap: [AppComponent]
 })
