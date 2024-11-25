@@ -1,8 +1,8 @@
 export class Appareil {
 name: string;
-statut: string;
-constructor(name: string, statut: string) {
+status: string;
+constructor(name: string, status: string) {
 this.name = name;
-this.statut = statut;
+this.status = status;
 }
 }

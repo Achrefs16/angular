@@ -9,8 +9,8 @@ import { AppareilsService } from "../appareils.service";
 export class ContactComponent {
  appareils :any =[]
 
-    constructor(private app:AppareilsService){
-      this.appareils=this.app.appareils
+    constructor( ){
+
 
     }
 }

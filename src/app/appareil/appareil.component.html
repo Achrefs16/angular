@@ -1,27 +1,39 @@
-<h3>Appareils Lisit</h3>
+<h3>Liste des Appareils</h3>
 <ul class="list-group">
-
- 
   <li
-   [ngClass]="{
-    'list-group-item':true,
-    'list-group-item-danger':app.status==='Eteint',
-    'list-group-item-success':app.status==='Allumé'
+    *ngFor="let app of appareils"
+    [ngClass]="{
+      'list-group-item': true,
+      'list-group-item-danger': app.status === 'Eteint',
+      'list-group-item-success': app.status === 'Allumé'
+    }"
+  >
+    <div
+      *ngIf="app.status === 'Eteint'"
+      style="
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        display: inline-block;
+        margin-right: 8px;"
+    ></div>
+    {{ app.name }} - {{ app.status }}
+  </li>
+</ul>
 
-  }" 
-  *ngFor="let app of appareils">
-  <div
-  *ngIf="app.status==='Eteint'" style="width: 10px;
-  height: 10px;
-  background-color: red;"></div>
-  {{app.name}} - {{app.status}}</li>
+<!-- Boutons pour tout allumer ou éteindre -->
+<div class="mt-3">
+  <button class="btn btn-primary me-2" (click)="onAllumer()">Allumer tout</button>
+  <button class="btn btn-danger" (click)="onEteindre()">Éteindre tout</button>
+</div>
 
-
-
-</ ul>
-
-<button class="btn btn-primary mt-3 mx-4" (click)="onallumer()">Allumer tout</button>
-<button  class="btn btn-danger mt-3" (click)="oneteint()">Etiendre tout</button>
-<br>
- <input type="text" [(ngModel)]="name" placeholder="Enter your name"  class="mt-4"/>
-<p>Hello, {{ name }}!</p>
+<!-- Champ d'entrée avec liaison bidirectionnelle -->
+<div class="mt-4">
+  <input
+    type="text"
+    [(ngModel)]="name"
+    placeholder="Entrez votre nom"
+    class="form-control"
+  />
+  <p class="mt-2">Bonjour, {{ name }} !</p>
+</div>

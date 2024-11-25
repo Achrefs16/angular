@@ -1,47 +1,48 @@
-import { Component } from '@angular/core';
-import { AppareilsService } from "../appareils.service";
+import { Component, OnInit } from '@angular/core';
+import { AppareilsService } from '../appareils.service';
+import { Appareil } from '../../../model/appariel'; 
 
 @Component({
   selector: 'app-appareil',
   templateUrl: './appareil.component.html',
-  styleUrl: './appareil.component.css'
+  styleUrls: ['./appareil.component.css']
 })
-export class AppareilComponent {
+export class AppareilComponent implements OnInit {
+  appareils: Appareil[] = [];
+  name: string = ''; // Déclarez la propriété `name`
 
+  constructor(private appareilsService: AppareilsService) {}
 
-    appareils :any =[]
+  ngOnInit(): void {
+    this.fetchAppareils();
+  }
 
-    constructor(private app:AppareilsService){
-      this.appareils=this.app.appareils
+  private fetchAppareils(): void {
+    this.appareilsService.getAppareils().subscribe({
+      next: (data) => {
+        this.appareils = data;
+      },
+      error: (error) => {
+        console.error('Erreur lors de la récupération des appareils :', error);
+      }
+    });
+  }
 
+  onAllumer(): void {
+    if (confirm("Êtes-vous sûr de vouloir allumer tous les appareils ?")) {
+      this.appareils = this.appareils.map(appareil => ({
+        ...appareil,
+        status: 'Allumé'
+      }));
     }
-    app1 = "Refrigerateur";
-    app2 = "Tv";
-    app3 = "Micro Onde";
-    app4 = "Climatiseur";
-    app1_status = "Allumé";
-    app2_status = "Eteint";
-    app3_status = "Allumé ";
-    app4_status = "Eteint";
- name: string = '';
-
-
- onallumer(){
-  if (confirm("Are you sure")) {
-      for (let app of this.appareils) {
-    app.status='Allumé'
-    
-  }
   }
 
- }
-  oneteint(){
-  if (confirm("Are you sure")) {
-      for (let app of this.appareils) {
-    app.status='Eteint'
-    
+  onEteindre(): void {
+    if (confirm("Êtes-vous sûr de vouloir éteindre tous les appareils ?")) {
+      this.appareils = this.appareils.map(appareil => ({
+        ...appareil,
+        status: 'Eteint'
+      }));
+    }
   }
- }
-}
-
 }
